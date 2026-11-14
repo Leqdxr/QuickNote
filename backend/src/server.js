@@ -8,13 +8,13 @@ dotenv.config();
 
 const app = express();
 
-connectDB();
-
 app.use(express.json());
 app.use(rateLimiter);
 
 app.use("/api/notes", notesRoutes);
 
-app.listen(5001, () => {
-  console.log("The server has started on port 5001");
+connectDB().then(() => {
+  app.listen(5001, () => {
+    console.log("The server has started on port 5001");
+  });
 });
