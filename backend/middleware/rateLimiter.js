@@ -5,7 +5,7 @@ export const rateLimiter = async (_, response, next) => {
     const { success } = await ratelimit.limit("my-rate-limit");
 
     if (!success) {
-      response.status(429).json({
+      return response.status(429).json({
         message: "Too many requests, please try again after a while",
       });
     }
